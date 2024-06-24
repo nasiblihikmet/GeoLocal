@@ -12,7 +12,7 @@ const LocationComponent = () => {
 
     const onError = (error) => {
       if (error.code === 1) {
-        setError('Konum hizmetleri kapalı. Lütfen tarayıcı ayarlarından konumu etkinleştirin.');
+        setError('Location services are off. Please enable location in browser settings.');
       } else {
         setError(error.message);
       }
@@ -21,7 +21,7 @@ const LocationComponent = () => {
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(onSuccess, onError);
     } else {
-      setError('Tarayıcı konum hizmetlerini desteklemiyor.');
+      setError('Browser does not support location services.');
     }
 
     // Bileşen kullanımdan çıktığında konum izlemesini durdurmak için temizleme işlevi
@@ -33,7 +33,7 @@ const LocationComponent = () => {
       {error && <p>Hata: {error}</p>}
       {location && (
         <p>
-          Konum: Enlem: {location.latitude}, Boylam: {location.longitude}
+         Location: Latitude: {location.latitude}, Longitude: {location.longitude}
         </p>
       )}
     </div>
